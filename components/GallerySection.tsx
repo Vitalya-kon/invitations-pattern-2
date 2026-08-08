@@ -4,15 +4,16 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
 import { SectionLabel } from "./CountdownSection";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay"
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
+// import Image from "next/image";
+import CarouselStacked from "@/components/carousel/carousel"
+// import Autoplay from "embla-carousel-autoplay"
+// import {
+//     Carousel,
+//     CarouselContent,
+//     CarouselItem,
+//     CarouselNext,
+//     CarouselPrevious,
+// } from "@/components/ui/carousel";
 
 const photos = [
     {
@@ -53,39 +54,41 @@ const photos = [
     },
 ];
 
-export function CarouselItems() {
-    return (
-        <Carousel 
-            className="w-full mx-6" 
-            opts={{ align: "start" }}
-            plugins={[
-                Autoplay({
-                    delay: 4000,
-                }),
-            ]}
-        >
-            <CarouselContent className="-ml-4">
-                {photos.map((photo) => (
-                    <CarouselItem key={photo.id} className="pl-4 basis-2/3">
-                        <div className="p-1">
-                            <div className="relative w-full h-[500px]">
-                                <Image
-                                    src={photo.src}
-                                    alt={photo.alt}
-                                    fill 
-                                    className="object-cover rounded-lg" 
-                                    sizes="(max-width: 768px) 100vw, 66vw" 
-                                />
-                            </div>
-                        </div>
-                    </CarouselItem>
-                ))}
-            </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
-        </Carousel>
-    );
-}
+// export function CarouselItems() {
+//     return (
+//         <Carousel 
+//             className="w-full mx-6" 
+//             opts={{ align: "start" }}
+//             plugins={[
+//                 Autoplay({
+//                     delay: 4000,
+//                 }),
+//             ]}
+//         >
+//             <CarouselContent className="-ml-4">
+//                 {photos.map((photo) => (
+//                     <CarouselItem key={photo.id} className="pl-4 basis-2/3">
+//                         <div className="p-1">
+//                             <div className="relative w-full h-[500px]">
+//                                 <Image
+//                                     src={photo.src}
+//                                     alt={photo.alt}
+//                                     fill 
+//                                     className="object-cover rounded-lg" 
+//                                     sizes="(max-width: 768px) 100vw, 66vw" 
+//                                 />
+//                             </div>
+//                         </div>
+//                     </CarouselItem>
+//                 ))}
+//             </CarouselContent>
+//             <CarouselPrevious />
+//             <CarouselNext />
+//         </Carousel>
+//     );
+// }
+
+
 
 export function GallerySection() {
     const [selected, setSelected] = useState<number | null>(null);
@@ -99,7 +102,7 @@ export function GallerySection() {
             <div className="absolute inset-0 z-0 h-16 bg-linear-to-b from-[#f5e8e4] to-[#fdf8f2]"></div>
             <div className="max-w-6xl mx-auto">
                 <motion.div
-                    className="text-center mb-14"
+                    className="text-center mb-4"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -120,7 +123,7 @@ export function GallerySection() {
                     </h2>
                 </motion.div>
 
-                <CarouselItems />
+                <CarouselStacked />
             </div>
 
             {/* Lightbox */}

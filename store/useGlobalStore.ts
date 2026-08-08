@@ -14,6 +14,12 @@ export interface ProgramItem {
     title: string;
     desc: string;
 }
+export interface PhotoItem {
+    id: number;
+    src: string;
+    alt: string;
+    aspect: "portrait" | "landscape";
+}
 
 interface GlobalState {
     man: string; /// жених
@@ -24,6 +30,7 @@ interface GlobalState {
     weddingDate: Date, // дата свадьбы для обратного отсчета
     events: EventItem[]; /// список событий в день свадьбы
     program: ProgramItem[]; /// список мероприятий в день свадьбы
+    photos: PhotoItem[]; /// список фотографий
 }
 
 export const useGlobalStore = create<GlobalState>()(() => ({
@@ -65,4 +72,42 @@ export const useGlobalStore = create<GlobalState>()(() => ({
         { time: "21:30", title: "Торт", desc: "Разрезание свадебного торта и праздничный десерт." },
         { time: "00:00", title: "Финальный фейерверк", desc: "Яркое завершение незабываемого вечера под звёздами." },
     ],
+    photos : [
+    {
+        id: 1,
+        src: "/images/hero2.png",
+        alt: "Жених и невеста",
+        aspect: "portrait",
+    },
+    {
+        id: 2,
+        src: "/images/gallary-1.png",
+        alt: "Влюблённые",
+        aspect: "portrait",
+    },
+    {
+        id: 3,
+        src: "/images/kiss.png",
+        alt: "Нежный поцелуй",
+        aspect: "portrait",
+    },
+    {
+        id: 4,
+        src: "/images/hero2.png",
+        alt: "Жених и невеста",
+        aspect: "portrait",
+    },
+    {
+        id: 5,
+        src: "/images/gallary-1.png",
+        alt: "Влюблённые",
+        aspect: "portrait",
+    },
+    {
+        id: 6,
+        src: "/images/kiss.png",
+        alt: "Нежный поцелуй",
+        aspect: "portrait",
+    },
+],
 }));
