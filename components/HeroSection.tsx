@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "motion/react";
 import { ChevronDown } from "lucide-react";
+import { useGlobalStore } from '@/store/useGlobalStore';
 
 const HERO_IMAGE = "/images/hero.webp";
 
@@ -11,6 +12,12 @@ export function HeroSection() {
     const el = document.getElementById("countdown");
     el?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const man = useGlobalStore((state) => state.man);
+  const woman = useGlobalStore((state) => state.woman);
+  const weddingDay = useGlobalStore((state) => state.weddingDay);
+  const location = useGlobalStore((state) => state.location);
+  const locatiionRegion = useGlobalStore((state) => state.locationRegion);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -83,7 +90,7 @@ export function HeroSection() {
               fontWeight: 400,
             }}
           >
-            Анна
+            {woman}
           </h2>
           <p
             className=""
@@ -102,7 +109,7 @@ export function HeroSection() {
               fontWeight: 400,
             }}
           >
-            Михаил
+            {man}
           </h2>
         </motion.div>
 
@@ -124,13 +131,13 @@ export function HeroSection() {
               letterSpacing: "0.25em",
             }}
           >
-            14 сентября 2026 года
+            {weddingDay}
           </p>
           <p
             className="text-[#C4A898]"
             style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem" }}
           >
-            Усадьба «Архангельское» <br/> · Московская область
+            {location} <br/> · {locatiionRegion}
           </p>
           <div
             className="w-16 h-px opacity-60"

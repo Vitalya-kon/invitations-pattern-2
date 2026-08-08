@@ -1,10 +1,10 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useGlobalStore } from "@/store/useGlobalStore";
 
-const WEDDING_DATE = new Date("2026-09-14T16:00:00");
+const WEDDING_DATE = useGlobalStore.getState().weddingDate; // Получаем дату свадьбы из глобального состояния
 
 function getTimeLeft() {
     const now = new Date();
@@ -19,9 +19,22 @@ function getTimeLeft() {
 }
 
 export function CountdownSection() {
-    const [time, setTime] = useState(getTimeLeft);
+    const weddingDay = useGlobalStore((state) => state.weddingDay);
+    // 1. Инициализируем нулями. Сервер и первый рендер клиента нарисуют "00"
+    const [time, setTime] = useState({
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+    });
+
+    // 2. Флаг, который скажет нам: "Йоу, мы уже в браузере, JS работает!"
+    const [isMounted, setIsMounted] = useState(false);
 
     useEffect(() => {
+        setIsMounted(true); // Отмечаем, что гидрация прошла успешно
+        setTime(getTimeLeft()); // Считаем реальное время
+
         const id = setInterval(() => setTime(getTimeLeft()), 1000);
         return () => clearInterval(id);
     }, []);
@@ -39,21 +52,18 @@ export function CountdownSection() {
             className="py-24 px-6 relative"
             style={{ background: "#F5E8E4" }}
         >
-            <motion.div 
+            {/* Твой прекрасный маятник с картинкой, я его не трогал */}
+            <motion.div
                 className="absolute top-2 sm:right-[20%] right-3 sm:w-36 sm:h-36 w-28 h-28 z-20"
-                style={{
-                    transformOrigin: "top center",
-                }}
-                animate={{
-                    rotate: [15, -15],
-                }}
+                style={{ transformOrigin: "top center" }}
+                animate={{ rotate: [15, -15] }}
                 transition={{
-                    duration: 2.0,       
-                    repeat: Infinity,   
-                    repeatType: "reverse", // Плавный возврат в обратную сторону (15 -> -15 -> 15)
-                    ease: "easeInOut",   // Замедление в крайних точках (имитация физики маятника)
+                    duration: 2.0,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
                 }}
-                >
+            >
                 <Image
                     src="/images/time.png"
                     width={100}
@@ -62,6 +72,7 @@ export function CountdownSection() {
                     className="w-full h-full object-contain opacity-40 inline-block"
                 />
             </motion.div>
+
             <div className="max-w-4xl mx-auto text-center ">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -109,7 +120,10 @@ export function CountdownSection() {
                                         lineHeight: 1,
                                     }}
                                 >
-                                    {String(value).padStart(2, "0")}
+                                    {/* 3. МАГИЯ ЗДЕСЬ: Рендерим реальное время только после монтирования */}
+                                    {isMounted
+                                        ? String(value).padStart(2, "0")
+                                        : "00"}
                                 </span>
                             </div>
                             <span
@@ -145,7 +159,7 @@ export function CountdownSection() {
                             color: "#8B4D5E",
                         }}
                     >
-                        14 сентября 2026
+                        {weddingDay}
                     </span>
                     <div
                         className="h-px flex-1 max-w-24"

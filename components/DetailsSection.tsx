@@ -4,36 +4,14 @@ import { motion } from "motion/react";
 import { MapPin, Clock, Heart } from "lucide-react";
 import { SectionLabel } from "./CountdownSection";
 import Image from "next/image";
+import { useGlobalStore } from '@/store/useGlobalStore';
 
 const VENUE_IMAGE = "/images/usadba.webp";
 
 export function DetailsSection() {
-    const events = [
-        {
-            icon: <Heart size={20} />,
-            title: "Церемония",
-            time: "16:00",
-            location: "Белый зал усадьбы",
-            description:
-                "Торжественная регистрация брака в окружении самых близких людей.",
-        },
-        {
-            icon: <Clock size={20} />,
-            title: "Коктейльный час",
-            time: "17:00",
-            location: "Терраса с видом на парк",
-            description:
-                "Прогулка, фотографии и лёгкие закуски в ожидании праздничного ужина.",
-        },
-        {
-            icon: <MapPin size={20} />,
-            title: "Банкет",
-            time: "18:30",
-            location: "Большой зал",
-            description:
-                "Праздничный ужин, живая музыка и танцы до самого утра.",
-        },
-    ];
+    const events = useGlobalStore((state) => state.events);
+    const location = useGlobalStore((state) => state.location);
+    const locatiionRegion = useGlobalStore((state) => state.locationRegion);
 
     return (
         <section
@@ -124,7 +102,7 @@ export function DetailsSection() {
                                     fontWeight: 400,
                                 }}
                             >
-                                Усадьба «Архангельское»
+                                {location}
                             </p>
                             <p
                                 className="text-white/70 mt-1"
@@ -133,7 +111,7 @@ export function DetailsSection() {
                                     fontSize: "0.85rem",
                                 }}
                             >
-                                Красногорский район, Московская область
+                                {locatiionRegion}
                             </p>
                         </div>
                     </motion.div>
@@ -156,7 +134,9 @@ export function DetailsSection() {
                                         color: "#8B4D5E",
                                     }}
                                 >
-                                    {event.icon}
+                                    {event.iconType === 'heart' && <Heart size={20} />}
+                                    {event.iconType === 'clock' && <Clock size={20} />}
+                                    {event.iconType === 'map-pin' && <MapPin size={20} />}
                                 </div>
                                 <div>
                                     <div className="flex items-baseline gap-3 flex-wrap">

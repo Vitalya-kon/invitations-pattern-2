@@ -2,18 +2,11 @@
 
 import { motion } from "motion/react";
 import { SectionLabel } from "./CountdownSection";
-
-const program = [
-  { time: "14:00", title: "Сбор гостей", desc: "Добро пожаловать! Встреча гостей, шампанское." },
-  { time: "16:00", title: "Торжественная церемония", desc: "Обмен клятвами и кольцами в Белом зале." },
-  { time: "17:00", title: "Коктейльный час", desc: "Фотографии, живая музыка, лёгкие закуски на террасе." },
-  { time: "18:30", title: "Праздничный ужин", desc: "Торжественный банкет с авторским меню от шеф-повара." },
-  { time: "20:00", title: "Первый танец", desc: "Танец молодожёнов и открытие танцпола для гостей." },
-  { time: "21:30", title: "Торт", desc: "Разрезание свадебного торта и праздничный десерт." },
-  { time: "00:00", title: "Финальный фейерверк", desc: "Яркое завершение незабываемого вечера под звёздами." },
-];
+import { useGlobalStore } from '@/store/useGlobalStore';
 
 export function ProgramSection() {
+
+  const { program } = useGlobalStore();
   return (
     <section
       id="program"
@@ -89,10 +82,9 @@ export function ProgramSection() {
                     )}
                   </div>
                   <div className="pb-8 flex-1">
-                    <p
+                    <p className="text-2xl"
                       style={{
                         fontFamily: "'Great Vibes', serif",
-                        fontSize: "1.05rem",
                         fontWeight: 400,
                         color: "#2A1A1A",
                         lineHeight: 1.3,
