@@ -228,7 +228,7 @@ const Card = ({ slide, index, total, progress, config }: CardProps) => {
             }}
             className={cn(
                 "absolute rounded-2xl overflow-hidden group pointer-events-none",
-                "w-44 h-56 sm:w-56 sm:h-80 lg:w-64 lg:h-96",
+                "w-50 h-70 sm:w-56 sm:h-80 lg:w-64 lg:h-96",
             )}
         >
             <img
