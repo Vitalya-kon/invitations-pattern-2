@@ -14,6 +14,10 @@ export interface ProgramItem {
     title: string;
     desc: string;
 }
+export interface DresscodeItem {
+    color: string;
+    label: string;
+}
 export interface PhotoItem {
     id: number;
     src: string;
@@ -31,6 +35,11 @@ interface GlobalState {
     events: EventItem[]; /// список событий в день свадьбы
     program: ProgramItem[]; /// список мероприятий в день свадьбы
     photos: PhotoItem[]; /// список фотографий
+    dresscode: {
+        title: string;
+        description: string;
+        colors: DresscodeItem[];
+    };
 }
 
 export const useGlobalStore = create<GlobalState>()(() => ({
@@ -109,5 +118,17 @@ export const useGlobalStore = create<GlobalState>()(() => ({
         alt: "Нежный поцелуй",
         aspect: "portrait",
     },
-],
+    ],
+    dresscode: {
+        title: "Дресс-код",
+        description: "Мы будем рады, если вы поддержите цветовую палитру нашей свадьбы",
+        colors: [
+            { color: "#B5935A", label: "Золотой" },
+            { color: "#8B4D5E", label: "Бордо" },
+            { color: "#8B7B75", label: "Кофейный" },
+            { color: "#C4A882", label: "Карамель" },
+            { color: "#D4B5A0", label: "Пудровый" },
+            { color: "#F5E8E4", label: "Айвори" },
+        ],
+    },
 }));

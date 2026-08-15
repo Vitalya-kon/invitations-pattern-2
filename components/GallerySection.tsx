@@ -97,9 +97,9 @@ export function GallerySection() {
         <section
             id="gallery"
             className="py-24 px-6 relative"
-            style={{ background: "#FDF8F2" }}
+            style={{ background: "#F5E8E4" }}
         >
-            <div className="absolute inset-0 z-0 h-16 bg-linear-to-b from-[#f5e8e4] to-[#fdf8f2]"></div>
+            <div className="absolute inset-0 z-0 h-16 bg-linear-to-t from-[#f5e8e4] to-[#fdf8f2]"></div>
             <div className="max-w-6xl mx-auto">
                 <motion.div
                     className="text-center mb-4"
