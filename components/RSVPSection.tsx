@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Check } from "lucide-react";
 import { SectionLabel } from "./CountdownSection";
+import Image from "next/image";
 
 type FormState = {
     name: string;
@@ -62,6 +63,29 @@ export function RSVPSection() {
             style={{ background: "#FDF8F2" }}
         >
             <div className="absolute inset-0 z-0 h-16 bg-linear-to-b from-[#f5e8e4] to-[#fdf8f2]" />
+            <motion.div
+                className="absolute -top-8 sm:left-[30%] left-3 sm:w-56 sm:h-56 w-36 h-36 z-20"
+                style={{
+                    transformOrigin: "top center",
+                }}
+                animate={{
+                    rotate: [5, -5],
+                }}
+                transition={{
+                    duration: 3.0,
+                    repeat: Infinity,
+                    repeatType: "reverse", // Плавный возврат в обратную сторону (15 -> -15 -> 15)
+                    ease: "easeInOut", // Замедление в крайних точках (имитация физики маятника)
+                }}
+            >
+                <Image
+                    src="/images/heart-shaped-balloons-clipart-md.png"
+                    width={100}
+                    height={100}
+                    alt="Свадебная пара"
+                    className="w-full h-full object-contain opacity-60 inline-block"
+                />
+            </motion.div>
             <div className="max-w-xl mx-auto">
                 <motion.div
                     className="text-center mb-12"
@@ -72,10 +96,9 @@ export function RSVPSection() {
                 >
                     <SectionLabel>Подтверждение</SectionLabel>
                     <h2
-                        className="mt-3"
+                        className="mt-3 text-5xl"
                         style={{
                             fontFamily: "'Great Vibes', serif",
-                            fontSize: "clamp(2rem, 5vw, 3.5rem)",
                             fontWeight: 400,
                             color: "#2A1A1A",
                             lineHeight: 1.2,

@@ -15,7 +15,29 @@ export function DresscodeSection() {
             style={{ background: "#FDF8F2" }}
         >
             <div className="absolute inset-0 z-0 h-16 bg-linear-to-b from-[#f5e8e4] to-[#fdf8f2]" />
-
+            <motion.div
+                className="absolute -top-16 sm:left-[30%] left-3 sm:w-46 sm:h-46 w-36 h-36 z-20"
+                style={{
+                    transformOrigin: "top center",
+                }}
+                animate={{
+                    rotate: [5, -5],
+                }}
+                transition={{
+                    duration: 3.0,
+                    repeat: Infinity,
+                    repeatType: "reverse", // Плавный возврат в обратную сторону (15 -> -15 -> 15)
+                    ease: "easeInOut", // Замедление в крайних точках (имитация физики маятника)
+                }}
+            >
+                <Image
+                    src="/images/bride-and-groom-clipart-md (1).png"
+                    width={500}
+                    height={500}
+                    alt="Свадебная пара"
+                    className="w-full h-full opacity-60 object-contain inline-block"
+                />
+            </motion.div>
             <div className="max-w-3xl mx-auto text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -25,10 +47,9 @@ export function DresscodeSection() {
                 >
                     <SectionLabel>Палитра праздника</SectionLabel>
                     <h2
-                        className="mt-3"
+                        className="mt-3 text-5xl"
                         style={{
                             fontFamily: "'Great Vibes', serif",
-                            fontSize: "clamp(2rem, 5vw, 3.5rem)",
                             fontWeight: 400,
                             color: "#2A1A1A",
                             lineHeight: 1.2,

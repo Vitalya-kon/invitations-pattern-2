@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
 import { SectionLabel } from "./CountdownSection";
-// import Image from "next/image";
+import Image from "next/image";
 import CarouselStacked from "@/components/carousel/carousel"
 // import Autoplay from "embla-carousel-autoplay"
 // import {
@@ -100,6 +100,25 @@ export function GallerySection() {
             style={{ background: "#F5E8E4" }}
         >
             <div className="absolute inset-0 z-0 h-16 bg-linear-to-t from-[#f5e8e4] to-[#fdf8f2]"></div>
+             <motion.div
+                className="absolute -top-16 sm:right-[30%] right-3 sm:w-56 sm:h-56 w-36 h-36 z-20"
+                style={{ transformOrigin: "top center" }}
+                animate={{ rotate: [10, -10] }}
+                transition={{
+                    duration: 4.0,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                }}
+            >
+                <Image
+                    src="/images/rustic-wedding-clipart-md.png"
+                    width={300}
+                    height={300}
+                    alt="Свадебная пара"
+                    className="w-full h-full object-contain opacity-60 inline-block"
+                />
+            </motion.div>
             <div className="max-w-6xl mx-auto">
                 <motion.div
                     className="text-center mb-4"
@@ -110,10 +129,9 @@ export function GallerySection() {
                 >
                     <SectionLabel>Наша история</SectionLabel>
                     <h2
-                        className="mt-3"
+                        className="mt-3 text-5xl"
                         style={{
                             fontFamily: "'Great Vibes', serif",
-                            fontSize: "clamp(2rem, 5vw, 3.5rem)",
                             fontWeight: 400,
                             color: "#2A1A1A",
                             lineHeight: 1.2,

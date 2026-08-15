@@ -41,10 +41,9 @@ export function ProgramSection() {
                 >
                     <SectionLabel>14 сентября 2026</SectionLabel>
                     <h2
-                        className="mt-3"
+                        className="mt-3 text-5xl"
                         style={{
                             fontFamily: "'Great Vibes', serif",
-                            fontSize: "clamp(2rem, 5vw, 3.5rem)",
                             fontWeight: 400,
                             color: "#2A1A1A",
                             lineHeight: 1.2,
